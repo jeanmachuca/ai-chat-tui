@@ -77,14 +77,35 @@ Ctrl+N or Ctrl+D
   → history.go writes updated session store
 ```
 
-## Requirements
+## Install
 
-- Go 1.21+
-- An OpenAI-compatible API endpoint (Ollama, code-inference, OpenAI, etc.)
+### Option 1: One-liner (curl | bash)
 
-No external runtime dependencies — the binary is self-contained.
+```bash
+curl -fsSL https://raw.githubusercontent.com/jeanmachuca/ai-chat-tui/main/install.sh | bash
+```
 
-## Build from source
+The script detects your platform, builds from source if Go is available, or falls back to downloading a pre-built release.
+
+### Option 2: Make
+
+```bash
+git clone git@github.com:jeanmachuca/ai-chat-tui.git
+cd ai-chat-tui
+make install
+```
+
+Installs to `/usr/local/bin` by default. Override with `DEST=~/.local/bin make install`.
+
+### Option 3: Manual (Go)
+
+```bash
+go install github.com/jeanmachuca/ai-chat-tui@latest
+```
+
+Requires Go 1.21+. Binary goes to `$GOPATH/bin` or `~/go/bin`.
+
+### Option 4: Build from source
 
 ```bash
 git clone git@github.com:jeanmachuca/ai-chat-tui.git
@@ -92,3 +113,10 @@ cd ai-chat-tui
 go build -o ai-chat .
 ./ai-chat --api http://localhost:11434 --model llama3.2
 ```
+
+## Requirements
+
+- Go 1.21+ (for building)
+- An OpenAI-compatible API endpoint (Ollama, code-inference, OpenAI, etc.)
+
+No external runtime dependencies — the binary is self-contained.
