@@ -24,7 +24,7 @@ Flags: `--model`, `--api`, `--api-key`, `--history` (see `./ai-chat -h`).
 
 | Key | Action |
 |-----|--------|
-| Ctrl+Enter | Send |
+| Enter | Send |
 | Shift+Enter | Newline |
 | Tab | Focus toggle |
 | Up/Down | Scroll |

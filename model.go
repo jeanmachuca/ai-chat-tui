@@ -49,7 +49,7 @@ type model struct {
 
 func initialModel(modelName, apiBase, apiKey, historyFile string) model {
 	ta := textarea.New()
-	ta.Placeholder = "Type a message (Ctrl+Enter to send)..."
+	ta.Placeholder = "Type a message (Enter to send, Shift+Enter for newline)..."
 	ta.SetWidth(80)
 	ta.SetHeight(3)
 	ta.CharLimit = 0

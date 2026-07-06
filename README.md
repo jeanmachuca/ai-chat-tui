@@ -40,7 +40,7 @@ go build -o ai-chat .
 
 | Key | Action |
 |-----|--------|
-| `Ctrl+Enter` | Send message |
+| `Enter` | Send message |
 | `Shift+Enter` | Newline in input |
 | `Tab` | Toggle focus: input / viewport |
 | `↑` / `↓` | Scroll chat (viewport focused) |

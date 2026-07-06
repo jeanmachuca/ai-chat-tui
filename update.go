@@ -43,8 +43,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.textarea.Focus()
 			}
 
-		case "ctrl+enter":
-			if m.loading {
+		case "enter":
+			if m.loading || m.focus != focusInput {
 				return m, nil
 			}
 			text := m.textarea.Value()
