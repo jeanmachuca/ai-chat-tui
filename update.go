@@ -62,7 +62,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			copy(msgs, m.messages)
 			return m, tea.Batch(
 				m.spinner.Tick,
-				sendMessage(m.apiBase, m.modelPath, msgs),
+				sendMessage(m.apiBase, m.apiKey, m.modelName, msgs),
 			)
 
 		case "ctrl+n":

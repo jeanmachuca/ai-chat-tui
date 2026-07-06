@@ -27,10 +27,10 @@ type streamLine struct {
 	} `json:"choices"`
 }
 
-func sendMessage(apiBase, modelPath string, msgs []message) tea.Cmd {
+func sendMessage(apiBase, apiKey, modelName string, msgs []message) tea.Cmd {
 	return func() tea.Msg {
 		body := chatRequest{
-			Model:     modelPath,
+			Model:     modelName,
 			Messages:  msgs,
 			Stream:    true,
 			MaxTokens: 4096,
@@ -41,7 +41,16 @@ func sendMessage(apiBase, modelPath string, msgs []message) tea.Cmd {
 			return errMsg{err: fmt.Errorf("encode: %w", err)}
 		}
 
-		resp, err := http.Post(apiBase+"/v1/chat/completions", "application/json", &buf)
+		req, err := http.NewRequest("POST", apiBase+"/v1/chat/completions", &buf)
+		if err != nil {
+			return errMsg{err: fmt.Errorf("request: %w", err)}
+		}
+		req.Header.Set("Content-Type", "application/json")
+		if apiKey != "" {
+			req.Header.Set("Authorization", "Bearer "+apiKey)
+		}
+
+		resp, err := http.DefaultClient.Do(req)
 		if err != nil {
 			return errMsg{err: fmt.Errorf("request: %w", err)}
 		}

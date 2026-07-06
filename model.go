@@ -41,12 +41,13 @@ type model struct {
 	width         int
 	height        int
 
-	modelPath   string
+	modelName   string
 	apiBase     string
+	apiKey      string
 	historyFile string
 }
 
-func initialModel(modelPath, apiBase, historyFile string) model {
+func initialModel(modelName, apiBase, apiKey, historyFile string) model {
 	ta := textarea.New()
 	ta.Placeholder = "Type a message (Ctrl+Enter to send)..."
 	ta.SetWidth(80)
@@ -79,10 +80,10 @@ func initialModel(modelPath, apiBase, historyFile string) model {
 		viewport:      vp,
 		spinner:       s,
 		loading:       false,
-		sessions:      sessions,
 		currentSessID: sessID,
 		focus:         focusInput,
-		modelPath:     modelPath,
+		modelName:     modelName,
+		apiKey:        apiKey,
 		apiBase:       apiBase,
 		historyFile:   historyFile,
 	}

@@ -1,6 +1,6 @@
 # AI Chat TUI
 
-Terminal AI chat client — talks to code-inference API at `http://api:8000`.
+Terminal AI chat client — works with any OpenAI-compatible API.
 
 Built with Bubble Tea, Bubbles, Lip Gloss, Glamour.
 
@@ -10,7 +10,15 @@ Built with Bubble Tea, Bubbles, Lip Gloss, Glamour.
 go mod tidy && go build -o ai-chat . && ./ai-chat
 ```
 
-Flags: `--model`, `--api`, `--history` (see `./ai-chat -h`).
+## Examples
+
+| Provider | Command |
+|----------|---------|
+| Ollama (local) | `./ai-chat --api http://localhost:11434 --model llama3.2` |
+| code-inference | `./ai-chat --api http://api:8000 --model /models/model.gguf` |
+| OpenAI | `./ai-chat --api https://api.openai.com/v1 --model gpt-4o-mini --api-key sk-...` |
+
+Flags: `--model`, `--api`, `--api-key`, `--history` (see `./ai-chat -h`).
 
 ## Keybindings
 

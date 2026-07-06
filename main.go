@@ -9,10 +9,12 @@ import (
 )
 
 func main() {
-	var modelPath string
-	flag.StringVar(&modelPath, "model", "/models/model.gguf", "model path on server")
+	var modelName string
+	flag.StringVar(&modelName, "model", "llama3.2", "model name (Ollama) or path (code-inference)")
 	var apiBase string
-	flag.StringVar(&apiBase, "api", "http://api:8000", "API base URL")
+	flag.StringVar(&apiBase, "api", "http://localhost:11434", "API base URL (e.g. http://localhost:11434 for Ollama, http://api:8000 for code-inference)")
+	var apiKey string
+	flag.StringVar(&apiKey, "api-key", "", "API key for cloud providers (OpenAI, Anthropic, etc.)")
 	var historyFile string
 	flag.StringVar(&historyFile, "history", "", "history file (default: ~/.local/share/ai-chat/history.json)")
 	flag.Parse()
@@ -26,7 +28,7 @@ func main() {
 		historyFile = home + "/.local/share/ai-chat/history.json"
 	}
 
-	m := initialModel(modelPath, apiBase, historyFile)
+	m := initialModel(modelName, apiBase, apiKey, historyFile)
 	p := tea.NewProgram(m)
 
 	if _, err := p.Run(); err != nil {
