@@ -114,6 +114,26 @@ go build -o ai-chat .
 ./ai-chat --api http://localhost:11434 --model llama3.2
 ```
 
+## Download a model
+
+If you're using a local GGUF server (like code-inference) that doesn't have a model yet, use the included download script:
+
+```bash
+# Default: Qwen2.5-Coder-0.5B (468 MB, fast)
+sh download-model.sh
+
+# Download to a specific path
+sh download-model.sh qwen2.5-coder-0.5b ./models/model.gguf
+
+# Larger models for better quality
+sh download-model.sh qwen2.5-coder-1.5b ./models/model.gguf
+sh download-model.sh qwen2.5-coder-3b   ./models/model.gguf
+sh download-model.sh llama3.2-1b        ./models/model.gguf
+sh download-model.sh llama3.2-3b        ./models/model.gguf
+```
+
+All models are GGUF Q4_K_M quantized from Hugging Face.
+
 ## Requirements
 
 - Go 1.21+ (for building)
